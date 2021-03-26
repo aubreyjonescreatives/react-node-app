@@ -7,15 +7,16 @@
   "scripts": {
     "postinstall": "cd client && npm install",
     "start": "node app.js",
-    "seed": "node seed/loadAPI.js", 
-    "heroku-postbuild": "cd client && npm install && npm run build", 
+    "start-dev": "nodemon app.js", 
+    "buildDocker": "docker build .", 
+    "seed": "node seed/loadAPI.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "build": "cd client && npm run build"
   },
   "author": "Aubrey Jones",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
