@@ -2,6 +2,8 @@ import axios from 'axios';
 import { Card } from '../models/card.js'
 import mongoose from 'mongoose'
 import * as dotenv from 'dotenv'
+
+
 dotenv.config()
 
 const seedMongo = async () => {

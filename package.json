@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "cd client && npm install",
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "seed": "node seed/loadAPI.js", 
     "heroku-postbuild": "cd client && npm install && npm run build", 
     "build": "cd client && npm run build"
