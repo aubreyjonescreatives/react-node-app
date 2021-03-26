@@ -8,7 +8,6 @@
     "postinstall": "cd client && npm install",
     "start": "node app.js",
     "start-dev": "nodemon app.js", 
-    "buildDocker": "docker build .", 
     "seed": "node seed/loadAPI.js",
     "build": "cd client && npm run build"
   },
