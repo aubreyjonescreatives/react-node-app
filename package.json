@@ -10,7 +10,6 @@
     "start-dev": "nodemon app.js", 
     "buildDocker": "docker build .", 
     "seed": "node seed/loadAPI.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
     "build": "cd client && npm run build"
   },
   "author": "Aubrey Jones",
