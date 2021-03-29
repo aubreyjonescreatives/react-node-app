@@ -35,7 +35,7 @@ const DeckofCards = () => {
 
 const [deckData, setDeckData] = useState([])
 
-const [restartdeckData, restartsetDeckData] = useState([])
+//const [restartdeckData, restartsetDeckData] = useState([])
 
 const [debouncedName, setDebouncedName ] = useState('')
 const [deleteOpen, setDeleteOpen] = useState(false)
@@ -153,7 +153,7 @@ function hintButton() {
     
 }
 
-
+/*
 function restartButton() {
 
     
@@ -172,7 +172,7 @@ const fetchCardsRestart = async () => {
     fetchCardsRestart()
   
 }
-
+*/
 
 
 
@@ -184,7 +184,7 @@ return (
      <h2>How Fast Can You Make a Full Suit?</h2>
     
     <button className="buttonHint" onClick={hintButton}>Show Hint</button>
-    <button className="buttonHint" onClick={restartButton}>Restart</button>
+    <button className="buttonHint">Restart</button>
      <h2 id="gameHints"></h2>
      <div></div>
      <form>
