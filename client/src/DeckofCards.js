@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import axios from 'axios'
 import {Card, IconButton, CardMedia, Typography, Container, 
     Dialog, Button, DialogTitle, DialogContent, DialogContentText, 
@@ -14,8 +14,6 @@ import * as Yup from 'yup'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
-const PORT = process.env.PORT || 3000
-
 
 
 const Loading = () => (
