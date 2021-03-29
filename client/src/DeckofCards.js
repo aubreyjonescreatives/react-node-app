@@ -14,7 +14,7 @@ import * as Yup from 'yup'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 
 
@@ -38,16 +38,16 @@ const [deckData, setDeckData] = useState([])
 
 const [restartdeckData, restartsetDeckData] = useState([])
 
-
+const [debouncedName, setDebouncedName ] = useState('')
 const [deleteOpen, setDeleteOpen] = useState(false)
-const [selectedCard, setSelectedCard] = useState(null)
+const [selectedCard, setSelectedCard] = useState({ id: ''})
 const [editOpen, setEditOpen] = useState(false)
 
 
 
 const fetchCards = async () => {
     try {
-    const cards = await axios.get(`http://localhost:${PORT}/card/`)
+    const cards = await axios.get(`/card`)
     setDeckData(cards.data)
     console.log(cards.data)
     } catch (err) {
@@ -62,6 +62,27 @@ const fetchCards = async () => {
        
     }, [])
 
+
+    const handleInput = (event) => {
+        debounce(event.target.value)
+    }
+
+    const debounce = useCallback(
+        _.debounce((searchVal) => {
+            setDebouncedName(searchVal)
+        }, 1000), 
+        [], 
+    )
+
+
+    const handleSearch = () => {
+        if (debouncedName) {
+            setDeckData(deckData.filter(deck => deck._id.includes(debouncedName)))
+        } else {
+            fetchCards()
+        }
+    }
+
     const handleClickEditOpen = (card) => {
         setSelectedCard(card.card) 
         setEditOpen(true)
@@ -73,7 +94,7 @@ const fetchCards = async () => {
     
 const handleUpdate = async (values) => {
     try {
-        const result = await axios.put(`http://localhost:${PORT}/card/update`, {
+        const result = await axios.put(`/card/update`, {
             data: {
                 id: values._id,
                 code: values.code, 
@@ -109,7 +130,7 @@ const handleDelete = async () => {
     setDeleteOpen(false)
     console.log(selectedCard._id)
     try {
-        await axios.delete(`http://localhost:${PORT}/card/delete`, { 
+        await axios.delete(`/card/delete`, { 
         data: {   
         cardId: selectedCard._id
         }
@@ -119,6 +140,7 @@ const handleDelete = async () => {
         console.error(err)
     }
 }
+
 
 
 function hintButton() {
@@ -167,8 +189,8 @@ return (
      <h2 id="gameHints"></h2>
      <div></div>
      <form>
-         <TextField placeholder='Search' />
-         <IconButton aria-label='search'>
+         <TextField placeholder='Search' onChange={handleInput} />
+         <IconButton aria-label='search' onClick={handleSearch}>
              <SearchIcon />
              </IconButton>
              <IconButton aria-label='add card'>
