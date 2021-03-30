@@ -12,7 +12,7 @@ import TopNavigation from './TopNavigation'
 
 
 const routes = [
-  { path '/card' Component: DeckofCards}
+  { path: '/card', Component: DeckofCards}
 ]
 
 function App() {
